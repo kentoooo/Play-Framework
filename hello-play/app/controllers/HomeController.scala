@@ -11,6 +11,8 @@ import play.api.mvc._
 @Singleton
 class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
+  var counter = 0
+
   /**
    * Create an Action to render an HTML page.
    *
@@ -19,6 +21,7 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
    * a path of `/`.
    */
   def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index())
+    counter += 1
+    Ok(views.html.index(counter))
   }
 }
