@@ -11262,10 +11262,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+// Dropzoneのドラッグ＆ドロップエリアの設定
+__WEBPACK_IMPORTED_MODULE_2_dropzone___default.a.options.filedropzone = {
+  paramName: 'file', // The name that will be used to transfer the file
+  maxFilesize: 2, // MB
+  dictDefaultMessage: '',
+  thumbnailHeight: 200,
+  thumbnailWidth: 200,
+  init: function init() {
+    this.on('addedfile', function (file) {
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#overlaytext').val(__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#overlaytext-shown').val());
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#overlaytextsize').val(__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#overlaytextsize-shown').val());
+    });
+  },
+  accept: function accept(file, done) {
+    done();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.dz-details').remove();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.dz-progress').remove();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.dz-error-message').remove();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.dz-success-mark').remove();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.dz-error-mark').remove();
+  }
+};
+
 // Materializedの設定
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
-    // Materialized Menu
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.button-collapse').sideNav();
+  // Materialized Menu
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.button-collapse').sideNav();
 });
 
 /***/ }),
