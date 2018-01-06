@@ -1,19 +1,19 @@
 package domain.entity
 
 import java.time.LocalDateTime
-
 import com.google.common.net.MediaType
+import play.api.libs.json.JsString
+import play.api.libs.json.Json
+import play.api.libs.json.Writes
 
 /**
   * 画像のプロパティ
- *
-  * @param id　画像ID
+  * @param id 画像ID
   * @param value 画像のプロパティの値
   */
-case class PictureProperty(id: PictureId,value: PictureProperty.Value)
+case class PictureProperty(id: PictureId, value: PictureProperty.Value)
 
 object PictureProperty {
-
   /**
     * 画像のステータス
     * @param value 画像のステータスの値
@@ -40,7 +40,10 @@ object PictureProperty {
         case Converting.value => Some(Converting)
         case _ => None
       }
+
+    implicit val writes: Writes[Status] = Writes(s => JsString(s.toString))
   }
+
   /**
     * 画像のプロパティの値
     * @param status 画像のステータス
@@ -65,5 +68,10 @@ object PictureProperty {
                     createdTime: LocalDateTime
                   )
 
+  object Value {
+    implicit val mediaTypeWrites: Writes[MediaType] = Writes(s => JsString(s.toString))
+    implicit val writes: Writes[Value] = Json.writes[Value]
+  }
 
+  implicit val writes: Writes[PictureProperty] = Json.writes[PictureProperty]
 }
